@@ -1,0 +1,251 @@
+:root {
+    --body-background-color: #1a1a2e; /* 深沉的蓝紫色调暗色 */
+    --container-background-color: #2a2a4a; /* 容器背景，比body稍浅的蓝紫色 */
+    --container-border-color: #555; /* 边框依然使用中性灰，保持简洁 */
+    --container-boxshadow-color: rgba(0, 0, 0, 0.5); /* 阴影保持黑色半透明 */
+
+    --title-color: #e0e0e0; /* 标题使用亮灰色 */
+    --text-color-primary: #cccccc; /* 主要文本颜色，柔和的浅灰 */
+    --text-color-secondary: #aaaaaa; /* 次要文本/提示文本，中灰 */
+    --text-color-input: #e0e0e0; /* 输入框文本使用亮灰色，便于输入 */
+
+    --text-color-button: #ffffff; /* 主要按钮文本白色，与蓝色背景形成高对比 */
+    --text-color-button-hover: #ffffff;
+    --text-color-global-btn: #aaaaaa; /* 全局小按钮文本颜色，中灰 */
+    --text-color-global-btn-hover: #e0e0e0; /* 悬停时文本变亮 */
+
+    /* 输入框背景，比容器背景稍深的蓝紫色 */
+    --input-background-color: #3a3a5a; 
+
+    /* 输入框边框，中性灰 */
+    --input-border-color: #555;        
+    
+    /* 聚焦时使用明亮的蓝色作为强调 */
+    --input-focus-border-color: #5DADE2; 
+
+    
+    --input-focus-shadow-color: rgba(21, 32, 39, 0.3); /* 聚焦阴影使用强调色半透明 */
+    --input-invalid-border-color: #e74c3c; /* 无效输入框边框，醒目的红色 */
+
+    /* 按钮颜色 */
+    --button-background-color: #aac9dd; /* 主要按钮背景，明亮的蓝色 */
+    --button-hover-background-color: #2980b9; /* 悬停时使用深一点的蓝色 */
+    --global-btn-background-color: transparent; /* 全局小按钮背景透明 */
+    --global-btn-hover-background-color: rgba(170, 170, 170, 0.1); /* 悬停时微弱背景色 */
+    --global-btn-border-color: #aaaaaa; /* 全局小按钮边框，中灰 */
+
+    /* 文本链接颜色 */
+    --text-link-color: var(--text-color-secondary); /* 使用次要文本颜色 */
+    --text-link-hover-color: #5DADE2; /* 悬停时使用强调蓝色 */
+
+    /* 消息框颜色 */
+    --message-error-background: #c0392b; /* 错误消息背景，较深的红色 */
+    --message-error-text: #f9f9f9; /* 错误消息文本，接近白色 */
+    --message-error-border: #e74c3c; /* 错误消息边框，醒目的红色 */
+    --message-success-background: #2ecc71; /* 成功消息背景，绿色 */
+    --message-success-text: #f9f9f9; /* 成功消息文本，接近白色 */
+    --message-success-border: #27ae60; /* 成功消息边框，较深的绿色 */
+
+    /* 加载指示器颜色 */
+    --spinner-track-color: rgba(255, 255, 255, 0.3); /* 轨迹半透明白色 */
+    --spinner-color: #ffffff; /* 指示器白色 */
+}
+
+/* 同时需要确保 .text-link 规则使用了新的文本链接变量 */
+.text-link {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: var(--text-link-color); /* <-- 修改这里 */
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-family: inherit;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.text-link:hover {
+    color: var(--text-link-hover-color); /* <-- 修改这里 */
+    text-decoration: underline;
+}
+
+/*————————————————————————————————————————————————————————————————*/
+/* 1. 总体样式 & 布局 */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--body-background-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/*————————————————————————————————————————————————————————————————*/
+/* 2. 登录/注册容器 */
+.login-container {
+    width: 320px;
+    padding: 30px;
+    background-color: var(--container-background-color);
+    border: 1px solid var(--container-border-color);
+    border-radius: 8px;
+    box-shadow: 0 6px 20px var(--container-boxshadow-color);
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+}
+
+.login-container h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: var(--title-color);
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+/*————————————————————————————————————————————————————————————————*/
+/* 3. 表单元素 (Form Groups, Labels, Inputs) */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-color-primary);
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--input-background-color);
+    color: var(--text-color-input);
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 3px var(--input-focus-shadow-color);
+}
+
+.form-group input:invalid:not(:placeholder-shown):not(:focus) {
+    border-color: var(--input-invalid-border-color);
+}
+
+input[name="csrfmiddlewaretoken"] {
+    display: none;
+}
+
+/*————————————————————————————————————————————————————————————————*/
+/* 4. 按钮样式 (主提交按钮, 全局小按钮, 文本链接按钮) */
+.login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: var(--button-background-color);
+    color: var(--text-color-button);
+    font-weight: bold;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    position: relative; /* needed for spinner absolute positioning */
+}
+
+.login-button:hover {
+    background-color: var(--button-hover-background-color);
+    color: var(--text-color-button-hover);
+}
+
+.button-text {
+    transition: opacity 0.2s ease;
+}
+
+.login-button.loading .button-text {
+    opacity: 0;
+}
+
+.loading-spinner {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border: 3px solid var(--spinner-track-color);
+    border-radius: 50%;
+    border-top-color: var(--spinner-color);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.global-btn {
+    padding: 8px 15px;
+    margin: 0 5px;
+    color: var(--text-color-global-btn);
+    background-color: var(--global-btn-background-color);
+    border: 1px solid var(--global-btn-border-color);
+    border-radius: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.global-btn:hover {
+    background-color: var(--global-btn-hover-background-color);
+    color: var(--text-color-global-btn-hover);
+}
+
+#login-form>div:last-of-type {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.message-box {
+    padding: 10px 15px;
+    margin-bottom: 18px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: 1px solid transparent;
+    display: none;
+}
+
+.message-box.error {
+    background-color: var(--message-error-background);
+    color: var(--message-error-text);
+    border-color: var(--message-error-border);
+    display: block;
+}
+
+.message-box.success {
+    background-color: var(--message-success-background);
+    color: var(--message-success-text);
+    border-color: var(--message-success-border);
+    display: block;
+}
+

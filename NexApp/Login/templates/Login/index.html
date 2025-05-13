@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="{% static 'Login/css/index.css' %}">
+</head>
+<body>
+
+    <!-- hidden-login -->
+    <div class="login-container" id="login-form-container">
+        <h2>用户登录</h2>
+        <form action="" method="post" id="login-form">
+            <!-- 这就是 CSRF：攻击者在你不知情的情况下，利用你的身份在另一个网站上执行了恶意操作。-->
+            {% csrf_token %}
+            
+            <!-- 账号 -->
+            <div class="form-group">
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <!-- 密码 -->
+            <div class="form-group">
+                <label for="password">密码:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <!-- 提交 -->
+            <button type="submit" class="login-button" id="login-button">登录</button>
+
+            <!-- 注册界面 忘记密码 发送验证码 -->
+            <div style="text-align: center; margin-top: 15px;">
+                <button class="global-btn">忘记密码?</button> | <button class="global-btn" id="register-new-link">注册新账号</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="login-container hidden" id="register-form-container">
+        <h2>注册新账号</h2>
+        <form id="register-form" method="post">
+            {% csrf_token %}
+            
+            <!-- 错误提示容器 -->
+            <div id="register-message" class="message-box"></div>
+    
+            <div class="form-group">
+                <label for="register-username">用户名:</label>
+                <input type="text" id="register-username" name="username" 
+                       required minlength="3" maxlength="20"
+                       pattern="[a-zA-Z0-9_]+" 
+                       title="只允许字母、数字和下划线">
+            </div>
+            
+            <div class="form-group">
+                <label for="register-email">邮箱:</label>
+                <input type="email" id="register-email" name="email"
+                       required autocomplete="email">
+            </div>
+            
+            <div class="form-group">
+                <label for="register-password">密码:</label>
+                <input type="password" id="register-password" name="password"
+                       required minlength="8"
+                       pattern="^(?=.*[A-Za-z])(?=.*\d).{8,}$"
+                       title="至少8个字符,包含字母和数字">
+            </div>
+            
+            <div class="form-group">
+                <label for="register-password-confirm">确认密码:</label>
+                <input type="password" id="register-password-confirm" 
+                       name="password_confirm" required>
+            </div>
+    
+            <button type="submit" class="login-button" id="register-button">
+                <span class="button-text">立即注册</span>
+                <div class="loading-spinner hidden"></div>
+            </button>
+    
+            <div class="form-footer">
+                <button type="button" class="text-link" id="return-login-link">
+                    已有账号？立即登录
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <script src="{% static 'Login/js/index.js' %}"></script>
+    <script src="{% static 'Login/js/index_login.js' %}"></script>
+    <script src="{% static 'Login/js/index_register.js' %}"></script>
+
+</body>
+</html>
